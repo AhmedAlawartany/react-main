@@ -1,0 +1,169 @@
+@import '/theme/breakpoints.scss';
+
+@mixin h2-header-40 {
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 48px;
+}
+
+@mixin h2-header-36 {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 58px;
+}
+
+@mixin h3-title-24 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+@mixin h6-title-20 {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+}
+
+@mixin h8-subtitle-18 {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
+// End
+
+@mixin h1-header {
+    font-weight: 800;
+    font-size: 50px;
+    line-height: 65px;
+}
+
+@mixin h2-header {
+    font-weight: 800;
+    font-size: 26px;
+    line-height: 1.3;
+
+    @include mediaFrom($sm) {
+        font-size: 30px;
+        line-height: 1.6;
+    }
+
+    @include mediaFrom($md) {
+        font-size: 36px;
+        line-height: 1.3;
+    }
+}
+
+@mixin h3-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 26px;
+
+    @include mediaFrom($md) {
+        font-size: 24px;
+        line-height: 30px;
+    }
+}
+
+@mixin h4-title {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+
+    @include mediaFrom($md) {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@mixin h5-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+@mixin h6-title {
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+
+    @include mediaFrom($md) {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}
+
+@mixin h7-subtitle {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+@mixin h8-subtitle {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+
+    @include mediaFrom($sm) {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    @include mediaFrom($md) {
+        font-size: 18px;
+        line-height: 24px;
+    }
+}
+
+@mixin h9-body {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin h10-body {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+@mixin h11-body {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+@mixin h12-body {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@mixin h13-body {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@mixin h14-body {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+@mixin button-16 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+@mixin button-20 {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+@mixin button-24 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+}

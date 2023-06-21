@@ -1,0 +1,50 @@
+$xxs: 480px;
+$xs: 600px;
+$sm: 768px;
+$md: 1024px;
+$lg: 1280px;
+
+@mixin mediaFrom($breakpoint) {
+    @media screen and (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin mediaTo($breakpoint) {
+    @media screen and (max-width: ($breakpoint - 1)) {
+        @content;
+    }
+}
+
+@mixin mediaBetween($min, $max) {
+    @media screen and (min-width: $min) and (max-width: ($max - 1)) {
+        @content;
+    }
+}
+
+$tablet-min: 768px;
+$desktop-min: 1280px;
+
+@mixin desktop {
+    @media only screen and (min-width: #{$desktop-min}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media only screen and (max-width: #{$desktop-min - 1px}) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media only screen and (max-width: #{$tablet-min - 1px}) {
+        @content;
+    }
+}
+
+@mixin from-mobile {
+    @media only screen and (min-width: $tablet-min) {
+        @content;
+    }
+}

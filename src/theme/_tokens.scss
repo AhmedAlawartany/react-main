@@ -1,0 +1,40 @@
+@import '/theme/palette.scss';
+@import '/theme/breakpoints.scss';
+
+$shadow-bulk-input-normal: 0 2px 10px rgba(168, 145, 130, 0.3);
+$shadow-bulk-input-hover: 0 2px 10px rgba(168, 145, 130, 0.7);
+$shadow-bulk-select-dropdown-menu: 0 2px 8px #a89182;
+
+$shadow-filled-input-normal: 0 4px 24px rgba(0, 0, 0, 0.004);
+$shadow-filled-input-hover: 0 4px 24px rgba(0, 0, 0, 0.01);
+
+$shadow-paper-normal: 0 4px 24px rgba(0, 0, 0, 0.05);
+$shadow-paper-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+$shadow-history-item-hover: 0 2px 24px rgba(0, 0, 0, 0.05);
+$shadow-history-item-active: inset 0 2px 24px rgba(0, 0, 0, 0.05);
+
+$shadow-input-inner-autocomplete: 0 0 0 30px white inset !important;
+
+$border-radius-weak: 4px;
+$border-radius-regular: 5px;
+$border-radius-extra: 10px;
+$border-width-flat-input: 1px;
+$border-style-flat-input: solid;
+
+$transition-timing-function-default: cubic-bezier(0, 0, 0.2, 1);
+$transition-delay-default: 0ms;
+$transition-duration-extra-short: 100ms;
+$transition-duration-short: 180ms;
+$transition-duration-medium: 280ms;
+
+$header-height: 80px;
+$header-max-width: $desktop-min;
+$header-background: $stylish-black;
+
+@mixin set-transition($properties...) {
+    transition-property: $properties;
+    transition-duration: $transition-duration-short;
+    transition-timing-function: $transition-timing-function-default;
+    transition-delay: $transition-delay-default;
+}

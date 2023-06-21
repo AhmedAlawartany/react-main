@@ -1,0 +1,8 @@
+module.exports = {
+  extends: ["plugin:import/typescript"],
+  "import/extensions": [
+    "error",
+    "ignorePackages",
+    { ts: "never", tsx: "never" },
+  ],
+};

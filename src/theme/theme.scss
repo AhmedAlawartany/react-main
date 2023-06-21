@@ -1,0 +1,42 @@
+@import './palette.scss';
+@import './fonts.scss';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html,
+body,
+#root {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-family: $fontFamily;
+}
+
+html,
+body {
+    color: $stylish-black;
+}
+
+[dir] {
+    font-family: $fontFamily;
+
+    body {
+        font-family: $fontFamily;
+    }
+}
+
+[dir='rtl'] {
+    font-family: $rtlFontFamily;
+
+    body {
+        font-family: $rtlFontFamily;
+    }
+}
