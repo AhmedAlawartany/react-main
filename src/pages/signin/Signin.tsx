@@ -54,7 +54,7 @@ export const Signin = () => {
                             type="email"
                             id="email"
                             value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={(e: any) => setEmail(e.target.value)}
                             required
                             autoComplete="on"
                         />
@@ -71,7 +71,7 @@ export const Signin = () => {
                             type="password"
                             id="password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e: any) => setPassword(e.target.value)}
                             required
                             autoComplete="on"
                         />
