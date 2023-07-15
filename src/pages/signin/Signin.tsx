@@ -1,10 +1,10 @@
 import { router } from 'app/store';
 import { Button } from 'components';
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'services/apis/auth/authSlice';
 import { useLoginActionMutation } from 'services/apis/auth/authApiSlice';
-import { Container, FormContainer, Input, Label } from './Theme';
+import { Container, ErrorMsg, FormContainer, Input, Label } from './Theme';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type SignIn = {
@@ -16,7 +16,9 @@ export const Signin = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<SignIn>();
+    } = useForm<SignIn>({
+        reValidateMode: 'onChange',
+    });
 
     const onSubmit: SubmitHandler<SignIn> = async (data) => {
         console.log(data);
@@ -56,12 +58,15 @@ export const Signin = () => {
                             Email:
                         </Label>
                         <Input
-                            className="form-input px-4 rounded-full w-full"
+                            className="form-input px-4 rounded-full w-full "
                             type="email"
                             id="email"
-                            {...register('email', { required: true })}
+                            {...register('email', { required: 'This field is required' })}
+                            style={{
+                                border: errors.email ? '1px solid red' : '',
+                            }}
                         />
-                        {errors.email && <span>This field is required</span>}
+                        {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
                     </div>
                     <div className="flex justify-start flex-col w-full">
                         <Label
@@ -74,9 +79,12 @@ export const Signin = () => {
                             className="form-input px-4  rounded-full w-full"
                             type="password"
                             id="password"
-                            {...register('password')}
+                            {...register('password', { required: 'This field is required' })}
+                            style={{
+                                border: errors.password ? '1px solid red' : '',
+                            }}
                         />
-                        {errors.password && <span>This field is required</span>}
+                        {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
                     </div>
 
                     <Button
