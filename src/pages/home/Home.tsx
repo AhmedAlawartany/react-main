@@ -1,9 +1,11 @@
 import { router } from 'app/store';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelector } from 'services/apis/auth/authSelector';
 import { logOut } from 'services/apis/auth/authSlice';
 
 export const Home = () => {
     const dispatch = useDispatch<any>();
+    const { authUserState } = useSelector((state: any) => authSelector(state));
 
     const handelLogout = () => {
         dispatch(logOut());
@@ -20,6 +22,9 @@ export const Home = () => {
                 Sighnout
             </button>
             <div>
+                {authUserState?.firstname ? (
+                    <h1 className="text-black font-bold text-2xl">{`Hi ${authUserState?.firstname}`}</h1>
+                ) : null}
                 <h1 className="text-black md:text-blue-400  sm:text-red-900 text-2xl">Home</h1>
             </div>
         </div>
