@@ -6,11 +6,12 @@ const authenticationMiddleware = () => (toState: any, fromState: any, done: any)
     const authAction = () => {
         const nextState = get(toState, 'name', null);
         const hasAccessToken = store.getState().auth?.entities?.token;
+        const auth = store.getState().auth;
         const isPublicRoute = PUBLIC_ROUTES.includes(nextState);
 
         const isPrivatePage = !isPublicRoute && hasAccessToken;
         const isPublicPage = isPublicRoute && !hasAccessToken;
-
+        console.log(auth, 'hasAccessTokenhasAccessToken');
         if (isPrivatePage || isPublicPage) {
             done();
             return;

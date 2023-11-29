@@ -13,6 +13,7 @@
         "prettier": "prettier . --ignore-path .gitignore"
     },
     "dependencies": {
+        "@microsoft/signalr": "^7.0.11",
         "@reduxjs/toolkit": "^1.9.5",
         "@types/lodash": "^4.14.195",
         "@types/prettier": "^2.7.2",

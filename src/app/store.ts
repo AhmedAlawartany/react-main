@@ -1,7 +1,7 @@
 import { persistStore } from 'redux-persist';
 import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import reducers from './reducers';
 import { apiSlice } from './api/apiSlice';
 import createRouter from 'router5';
@@ -20,6 +20,8 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
+
+setupListeners(store.dispatch);
 
 const router = createRouter(routes, {
     allowNotFound: false,
@@ -41,6 +43,9 @@ if (!isEmpty(import.meta.env.ROUTER_ROOT)) {
 }
 
 router.start();
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
 
 export { store, persistor, router };
 

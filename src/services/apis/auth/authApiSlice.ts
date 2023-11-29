@@ -1,3 +1,4 @@
+// import { retry } from '@reduxjs/toolkit/query/react';
 import { apiSlice } from 'app/api/apiSlice';
 // Create an API instance
 export const authApiSlice = apiSlice.injectEndpoints({
@@ -12,6 +13,12 @@ export const authApiSlice = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: { ...credentials },
             }),
+            // extraOptions: {
+            //     backoff: () => {
+            //         // We intentionally error once on login, and this breaks out of retrying. The next login attempt will succeed.
+            //         retry.fail({ fake: 'error' });
+            //     },
+            // },
         }),
     }),
 });

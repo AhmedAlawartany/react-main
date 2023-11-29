@@ -11,11 +11,16 @@ export const authSlice = createSlice({
         setCredentials: (state, action) => {
             state.entities.token = action.payload?.tokens?.access.token;
             state.entities.user = action.payload?.user;
+            return state;
         },
         logOut: () => {
             return initialState;
         },
+        messageCreated: (state, action) => {
+            state.entities.message = action.payload;
+            return state;
+        },
     },
 });
 
-export const { setCredentials, logOut } = authSlice.actions;
+export const { setCredentials, logOut, messageCreated } = authSlice.actions;

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { logOut } from 'services/apis/auth/authSlice';
 // import { setCredentials, logOut } from '../../features/auth/authSlice'
 
 const BACKEND_API_ENDPOINT = import.meta.env.VITE_APP_BACKEND_API_ENDPOINT;
@@ -13,7 +14,8 @@ const baseQuery = fetchBaseQuery({
     baseUrl: BACKEND_API_ENDPOINT,
     // credentials: 'include',
     prepareHeaders: (headers: any, { getState }: any) => {
-        const token = getState().auth?.entities?.tokens?.access?.token;
+        const token = getState().auth?.entities?.token;
+
         if (token) {
             headers.set('Authorization', `Bearer ${token}`);
         }
@@ -24,7 +26,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
     let result = (await baseQuery(args, api, extraOptions)) as any;
 
-    if (result?.error?.originalStatus === 403) {
+    if (result?.error?.status === 401) {
         console.log('sending refresh token');
         // send refresh token to get new access token
         const refreshResult = await baseQuery('/refresh', api, extraOptions);
@@ -36,14 +38,26 @@ const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
             // retry the original query with new access token
             result = await baseQuery(args, api, extraOptions);
         } else {
-            // api.dispatch(logOut())
+            api.dispatch(logOut());
         }
     }
 
     return result;
 };
 
+// const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
+
 export const apiSlice = createApi({
+    reducerPath: 'splitApi',
+    /**
+     * A bare bones base query would just be `baseQuery: fetchBaseQuery({ baseUrl: '/' })`
+     */
+    // baseQuery: baseQueryWithRetry,
+    /**
+     * Tag types must be defined in the original API definition
+     * for any tags that would be provided by injected endpoints
+     */
+    tagTypes: ['Users'],
     baseQuery: baseQueryWithReauth,
     endpoints: (builder) => ({}),
 });

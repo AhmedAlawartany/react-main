@@ -7,6 +7,9 @@ import App from 'app/App';
 import { store, persistor, router } from 'app/store';
 import { I18nProvider } from './locales';
 import 'theme/theme.scss';
+// import { apiSlice } from 'app/api/apiSlice';
+
+// store.dispatch(apiSlice.endpoints.getUsers.initiate());
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>
