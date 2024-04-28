@@ -1,21 +1,27 @@
 import { router } from 'app/store';
 import { Button } from 'components';
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'services/apis/auth/authSlice';
 import { useLoginActionMutation } from 'services/apis/auth/authApiSlice';
-import { Container, FormContainer, Input, Label } from './Theme';
+import { Container, ErrorMsg, FormContainer, Input, Label } from './Theme';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
+type SignIn = {
+    email: string;
+    password: string;
+};
 export const Signin = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const dispatch = useDispatch();
-    const [loginAction, { isLoading }] = useLoginActionMutation() as any;
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<SignIn>({
+        reValidateMode: 'onChange',
+    });
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const data = { email, password };
-        console.log('/welcome', data);
+    const onSubmit: SubmitHandler<SignIn> = async (data) => {
+        console.log(data);
         try {
             const payload = await loginAction({ ...data })?.unwrap();
             dispatch(setCredentials({ ...payload }));
@@ -35,13 +41,15 @@ export const Signin = () => {
                 console.log('Login Failed');
             }
         }
-        console.log(email, password, 'Submitted!');
     };
+
+    const dispatch = useDispatch();
+    const [loginAction, { isLoading }] = useLoginActionMutation() as any;
 
     return (
         <div className="flex flex-col m-6 justify-center px-6 py-12 lg:px-8 rounded border border-solid boxShadow-DEFAULT w-full max-w-md">
             <Container className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <FormContainer className=" w-full p-6" onSubmit={handleSubmit}>
+                <FormContainer className=" w-full p-6" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex justify-start flex-col w-full">
                         <Label
                             className="block text-sm font-medium leading-6 text-gray-900"
@@ -50,14 +58,15 @@ export const Signin = () => {
                             Email:
                         </Label>
                         <Input
-                            className="form-input px-4 rounded-full w-full"
+                            className="form-input px-4 rounded-full w-full "
                             type="email"
                             id="email"
-                            value={email}
-                            onChange={(e: any) => setEmail(e.target.value)}
-                            required
-                            autoComplete="on"
+                            {...register('email', { required: 'This field is required' })}
+                            style={{
+                                border: errors.email ? '1px solid red' : '',
+                            }}
                         />
+                        {errors.email && <ErrorMsg>{errors.email.message}</ErrorMsg>}
                     </div>
                     <div className="flex justify-start flex-col w-full">
                         <Label
@@ -70,11 +79,12 @@ export const Signin = () => {
                             className="form-input px-4  rounded-full w-full"
                             type="password"
                             id="password"
-                            value={password}
-                            onChange={(e: any) => setPassword(e.target.value)}
-                            required
-                            autoComplete="on"
+                            {...register('password', { required: 'This field is required' })}
+                            style={{
+                                border: errors.password ? '1px solid red' : '',
+                            }}
                         />
+                        {errors.password && <ErrorMsg>{errors.password.message}</ErrorMsg>}
                     </div>
 
                     <Button

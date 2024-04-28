@@ -21,3 +21,7 @@ export const Input = styled.input`
     margin-bottom: 20px;
     border: 1px solid;
 `;
+
+export const ErrorMsg = styled.span`
+    color: red;
+`;
