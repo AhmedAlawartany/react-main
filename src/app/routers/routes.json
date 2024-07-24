@@ -1,10 +1,14 @@
 [
-  {
-    "name": "signin",
-    "path": "/signin"
-  },
-  {
-    "name": "dashboard",
-    "path": "/"
-  }
+    {
+        "name": "signin",
+        "path": "/signin"
+    },
+    {
+        "name": "dashboard",
+        "path": "/"
+    },
+    {
+        "name": "audioPlayer",
+        "path": "/audio-player"
+    }
 ]
