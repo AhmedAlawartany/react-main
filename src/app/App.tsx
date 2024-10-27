@@ -1,15 +1,16 @@
-import { useRouteNode } from 'react-router5';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { pageStructure } from 'utilities';
+import MainRouter from 'router/mainRouter';
 
 function App() {
-    const { route } = useRouteNode('');
-    const { Layout, Page } = pageStructure(route);
-
     return (
         <div className="App">
-            <Layout>
-                <Page />
-            </Layout>
+            <BrowserRouter>
+                <HelmetProvider>
+                    <MainRouter />
+                </HelmetProvider>
+            </BrowserRouter>
         </div>
     );
 }

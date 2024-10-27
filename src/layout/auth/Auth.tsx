@@ -22,14 +22,14 @@ const Content = styled('div')`
     margin: 0 auto;
 `;
 
-export const AuthLayout = memo(({ children }: AuthLayoutProps) => {
+const AuthLayout = memo(({ children }: AuthLayoutProps) => {
     return (
         <Main>
             <Header />
-            <ErrorBoundary fallback={<div>Something went wrong</div>}>
-                <Content className="flex justify-center items-center">{children}</Content>
-            </ErrorBoundary>
+            <Content className="flex justify-center items-center">{children}</Content>
             <Footer />
         </Main>
     );
 });
+
+export default AuthLayout;

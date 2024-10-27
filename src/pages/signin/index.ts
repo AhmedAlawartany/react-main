@@ -1,1 +1,2 @@
-export { Signin } from "./Signin";
+import Signin from './Signin';
+export default Signin;

@@ -1,6 +1,6 @@
-import { router } from 'app/store';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { authSelector } from 'services/apis/auth/authSelector';
 import { logOut } from 'services/apis/auth/authSlice';
 import {
@@ -10,7 +10,8 @@ import {
     usePrefetch,
 } from 'services/users/usersApiSlice';
 
-export const Home = () => {
+const Home = () => {
+    const navigateTo = useNavigate();
     const [skip, setSkip] = useState<number>(0);
 
     const dispatch = useDispatch<any>();
@@ -23,7 +24,7 @@ export const Home = () => {
 
     const handelLogout = () => {
         dispatch(logOut());
-        router.navigate('signin', { replace: true });
+        navigateTo('signin', { replace: true });
     };
 
     const {
@@ -95,7 +96,7 @@ export const Home = () => {
                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={handelLogout}
             >
-                Sighnout
+                Signout
             </button>
             <button onClick={() => setSkip((prev) => prev + 10)} onMouseEnter={prefetchNext}>
                 Next
@@ -113,3 +114,5 @@ export const Home = () => {
         </div>
     );
 };
+
+export default Home;

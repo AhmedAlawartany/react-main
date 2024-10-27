@@ -1,10 +1,10 @@
-import React from 'react';
-import { RouterProvider } from 'react-router5';
+import { StrictMode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import App from 'app/App';
-import { store, persistor, router } from 'app/store';
+import { store, persistor } from 'app/store';
 import { I18nProvider } from './locales';
 import 'theme/theme.scss';
 // import { apiSlice } from 'app/api/apiSlice';
@@ -12,15 +12,13 @@ import 'theme/theme.scss';
 // store.dispatch(apiSlice.endpoints.getUsers.initiate());
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
+    <StrictMode>
         <Provider store={store}>
             <PersistGate persistor={persistor}>
-                <RouterProvider router={router}>
-                    <I18nProvider>
-                        <App />
-                    </I18nProvider>
-                </RouterProvider>
+                <I18nProvider>
+                    <App />
+                </I18nProvider>
             </PersistGate>
         </Provider>
-    </React.StrictMode>,
+    </StrictMode>,
 );
