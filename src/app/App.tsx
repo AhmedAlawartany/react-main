@@ -1,16 +1,25 @@
-import { useRouteNode } from 'react-router5';
-import { pageStructure } from 'utilities';
+import ErrorBoundary from '@/components/errorBoundary/ErrorBoundaryComponent';
+import { usePageStructure } from '@/hooks/usePageStructure';
 
-function App() {
-    const { route } = useRouteNode('');
-    const { Layout, Page } = pageStructure(route);
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+
+const App: React.FC = () => {
+    const { Layout, Page } = usePageStructure();
+    const queryClient = new QueryClient();
 
     return (
-        <div className="App">
-            <Layout>
-                <Page />
-            </Layout>
-        </div>
+        <ErrorBoundary>
+            <QueryClientProvider client={queryClient}>
+                <HelmetProvider>
+                    <Layout>
+                        <Page />
+                    </Layout>
+                </HelmetProvider>
+            </QueryClientProvider>
+        </ErrorBoundary>
     );
-}
+};
+
 export default App;

@@ -1,23 +1,93 @@
-/** @type {import('tailwindcss').Config} */
-
 export default {
-    content: ['./index.html', './src/**/*.{html,js,ts,tsx}'],
-    theme: {
-        extend: {
-            maxWidth: {
-                loginBox: '470px',
-            },
-            boxShadow: {
-                sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
-                DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
-                md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-                lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-                xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
-                '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
-                inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
-                none: 'none',
-            },
-        },
-    },
-    plugins: [],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: ["class", "class"],
+  theme: {
+  	extend: {
+  		fontSize: {
+  			xs: ["0.75rem", { lineHeight: "1rem" }],
+  			sm: ["0.875rem", { lineHeight: "1.25rem" }],
+  			base: ["1rem", { lineHeight: "1.5rem" }],
+  			lg: ["1.125rem", { lineHeight: "1.75rem" }],
+  			xl: ["1.25rem", { lineHeight: "1.75rem" }],
+  			'2xl': ["1.5rem", { lineHeight: "2rem" }],
+  			'3xl': ["1.875rem", { lineHeight: "2.25rem" }],
+  			'4xl': ["2.25rem", { lineHeight: "2.5rem" }],
+  			'5xl': ["3rem", { lineHeight: "1" }],
+  			'6xl': ["3.75rem", { lineHeight: "1" }],
+  			'7xl': ["4.5rem", { lineHeight: "1.1" }],
+  			'8xl': ["6rem", { lineHeight: "1.2" }],
+  			'9xl': ["8rem", { lineHeight: "1.3" }]
+  		},
+  		colors: {
+  			primary: {
+  				light: '#c0d330',
+  				dark: '#aabb22',
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			background: 'hsl(var(--background))',
+  			text: {
+  				light: '#000000',
+  				dark: '#ffffff'
+  			},
+  			secondary: {
+  				light: '#f0f0f0',
+  				dark: '#2d3748',
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			accent: {
+  				light: '#ff6347',
+  				dark: '#dd6b20',
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			muted: {
+  				light: '#e2e8f0',
+  				dark: '#4a5568',
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderColor: {
+  			DEFAULT: '#e2e8f0',
+  			light: '#e2e8f0',
+  			dark: '#4a5568'
+  		},
+  		ringColor: {
+  			DEFAULT: '#cbd5e0',
+  			light: '#cbd5e0',
+  			dark: '#2d3748'
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
 };
