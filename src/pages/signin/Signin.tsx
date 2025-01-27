@@ -15,8 +15,7 @@ const Signin = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        navigateTo('/test');
-        return;
+
         const data = { email, password };
         console.log('/welcome', data);
         try {

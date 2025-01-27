@@ -1,11 +1,6 @@
-import { memo, ReactNode } from 'react';
 import styled from 'styled-components';
 import { Header, Footer } from '../components';
-import { ErrorBoundary } from 'react-error-boundary';
-
-interface AuthLayoutProps {
-    children: ReactNode;
-}
+import Views from 'pages';
 
 const Main = styled.main`
     display: flex;
@@ -22,14 +17,17 @@ const Content = styled('div')`
     margin: 0 auto;
 `;
 
-const AuthLayout = memo(({ children }: AuthLayoutProps) => {
+const AuthLayout = () => {
     return (
         <Main>
             <Header />
-            <Content className="flex justify-center items-center">{children}</Content>
+
+            <Content className="flex justify-center items-center">
+                <Views />
+            </Content>
             <Footer />
         </Main>
     );
-});
+};
 
 export default AuthLayout;

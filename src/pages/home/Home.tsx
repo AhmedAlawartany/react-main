@@ -37,7 +37,7 @@ const Home = () => {
     } = useGetUsersQuery(skip, {
         // pollingInterval: 3000,
         // refetchOnMountOrArgChange: true,
-        // skip: false,
+        skip: true,
         // refetchOnFocus: true,
         // refetchOnReconnect: true,
     });
@@ -104,13 +104,13 @@ const Home = () => {
             <button onClick={() => setSkip((prev) => prev - 10)}>prev</button>
             <button onClick={refetch}>refetch</button>
 
-            <div>
+            {/* <div>
                 {authUserState?.firstname ? (
                     <h1 className="text-black font-bold text-2xl">{`Hi ${authUserState?.firstname}`}</h1>
                 ) : null}
                 <h1 className="text-black md:text-blue-400  sm:text-red-900 text-2xl">Home</h1>
             </div>
-            <div className="mt-10">{content}</div>
+            <div className="mt-10">{content}</div> */}
         </div>
     );
 };
