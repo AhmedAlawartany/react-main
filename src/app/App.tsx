@@ -1,16 +1,24 @@
-import { useRouteNode } from 'react-router5';
-import { pageStructure } from 'utilities';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { store, persistor } from 'app/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import { I18nProvider } from 'locales';
+import Layout from 'layout/Layouts';
 
 function App() {
-    const { route } = useRouteNode('');
-    const { Layout, Page } = pageStructure(route);
-
     return (
-        <div className="App">
-            <Layout>
-                <Page />
-            </Layout>
-        </div>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <I18nProvider>
+                    <BrowserRouter>
+                        <HelmetProvider>
+                            <Layout />
+                        </HelmetProvider>
+                    </BrowserRouter>
+                </I18nProvider>
+            </PersistGate>
+        </Provider>
     );
 }
 export default App;

@@ -1,6 +1,6 @@
-import { router } from 'app/store';
 import { useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { authSelector } from 'services/apis/auth/authSelector';
 import { logOut } from 'services/apis/auth/authSlice';
 import {
@@ -10,7 +10,8 @@ import {
     usePrefetch,
 } from 'services/users/usersApiSlice';
 
-export const Home = () => {
+const Home = () => {
+    const navigateTo = useNavigate();
     const [skip, setSkip] = useState<number>(0);
 
     const dispatch = useDispatch<any>();
@@ -23,7 +24,7 @@ export const Home = () => {
 
     const handelLogout = () => {
         dispatch(logOut());
-        router.navigate('signin', { replace: true });
+        navigateTo('signin', { replace: true });
     };
 
     const {
@@ -36,7 +37,7 @@ export const Home = () => {
     } = useGetUsersQuery(skip, {
         // pollingInterval: 3000,
         // refetchOnMountOrArgChange: true,
-        // skip: false,
+        skip: true,
         // refetchOnFocus: true,
         // refetchOnReconnect: true,
     });
@@ -95,7 +96,7 @@ export const Home = () => {
                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={handelLogout}
             >
-                Sighnout
+                Signout
             </button>
             <button onClick={() => setSkip((prev) => prev + 10)} onMouseEnter={prefetchNext}>
                 Next
@@ -103,13 +104,15 @@ export const Home = () => {
             <button onClick={() => setSkip((prev) => prev - 10)}>prev</button>
             <button onClick={refetch}>refetch</button>
 
-            <div>
+            {/* <div>
                 {authUserState?.firstname ? (
                     <h1 className="text-black font-bold text-2xl">{`Hi ${authUserState?.firstname}`}</h1>
                 ) : null}
                 <h1 className="text-black md:text-blue-400  sm:text-red-900 text-2xl">Home</h1>
             </div>
-            <div className="mt-10">{content}</div>
+            <div className="mt-10">{content}</div> */}
         </div>
     );
 };
+
+export default Home;

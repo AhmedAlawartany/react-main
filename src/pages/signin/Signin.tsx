@@ -1,12 +1,13 @@
-import { router } from 'app/store';
 import { Button } from 'components';
 import React, { FormEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from 'services/apis/auth/authSlice';
 import { useLoginActionMutation } from 'services/apis/auth/authApiSlice';
 import { Container, FormContainer, Input, Label } from './Theme';
+import { useNavigate } from 'react-router-dom';
 
-export const Signin = () => {
+const Signin = () => {
+    const navigateTo = useNavigate();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const dispatch = useDispatch();
@@ -14,13 +15,14 @@ export const Signin = () => {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const data = { email, password };
         console.log('/welcome', data);
         try {
             const payload = await loginAction({ ...data })?.unwrap();
             dispatch(setCredentials({ ...payload }));
             console.log(payload, 'payload');
-            router.navigate('dashboard', { replace: true });
+            navigateTo('/dashboard', { replace: true });
         } catch (err: any) {
             console.log(err, 'errerrerrerrerrerr');
 
@@ -89,3 +91,5 @@ export const Signin = () => {
         </div>
     );
 };
+
+export default Signin;

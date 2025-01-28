@@ -1,9 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './palette.scss';
 @import './fonts.scss';
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
 
 html,
 body,
